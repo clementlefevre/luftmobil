@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-from service.converter import float_to_decimal
+from service.converter import float_to_decimal,fill_empty_values
 
 REMOTE_SERVER = "www.google.com"
 def is_connected():
@@ -36,6 +36,8 @@ def upload_data():
 
     data = [float_to_decimal(d) for d in data]
 
+    ## youpi ! AWS Dynamo cannot handle empty string.
+    data = fill_empty_values(data)
     
     with table.batch_writer() as batch:
         for d in data:

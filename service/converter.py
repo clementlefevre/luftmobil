@@ -28,3 +28,13 @@ def get_median(sds_measures):
 
     else : 
         return -1
+
+def fill_empty_values(data_list):
+    no_empty_list = []
+    for data in data_list:
+        for k,v in data.items():
+            if isinstance(v,str) and len(str(v))<1:
+                data[k]=None
+                
+        no_empty_list.append(data)
+    return no_empty_list

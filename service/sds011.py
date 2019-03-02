@@ -49,7 +49,7 @@ class SDS011(object):
     def _get_reply(self):
         """Read reply from device."""
         raw = self.ser.read(size=10)
-        print("raw: {}".format(raw))
+        
         data = raw[2:8]
         if (sum(d for d in data) & 255) != raw[8]:
             return None  #TODO: also check cmd id
